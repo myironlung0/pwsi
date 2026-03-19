@@ -24,7 +24,7 @@ using (var scope = app.Services.CreateScope())
         context.Database.EnsureCreated();
 
         //stworzyc dwie grupy studenckie oraz pieciu studentow
-        if(!context.Group.Any()) // sprawdza, czy sa jakies rekordy
+        if (!context.Group.Any()) // sprawdza, czy sa jakies rekordy
         {
             var group1 = new Group { Name = "Grupa1" };
             var group2 = new Group { Name = "Grupa2" };
@@ -52,8 +52,8 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-
+app.UseStaticFiles();
+app.UseRouting();
 app.MapRazorPages();
-
 
 app.Run();

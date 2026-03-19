@@ -1,9 +1,7 @@
 using CoreEFTest.DataContext;
 using CoreEFTest.EFModels;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-
 
 namespace Lab1
 {
