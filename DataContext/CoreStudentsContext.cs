@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CoreEFTest.EFModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,16 @@ namespace CoreEFTest.DataContext
         }
         public virtual DbSet<CoreEFTest.EFModels.Group> Group { get; set; }
         public virtual DbSet<CoreEFTest.EFModels.Student> Student { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            // config relacji Student -> Group
+            modelBuilder.Entity<Student>()
+                .HasOne(s => s.Group)
+                .WithMany(g => g.Students)
+                .OnDelete(DeleteBehavior.Restrict);  // nie usuwaj studentow
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿@page
 @model Lab1.IndexModel
 @{
+    Layout = "_Layout";
 }
 <h2>Lista studentów</h2>
 <table border="1">
@@ -10,17 +11,36 @@
             <th>Imię</th>
             <th>Wiek</th>
             <th>Nazwa grupy</th>
+            <th>Akcja</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var s in Model.Students)
+        @foreach (var s in Model.Student)
         {
             <tr>
                 <td>@s.LastName</td>
                 <td>@s.FirstName</td>
                 <td>@s.Age</td>
                 <td>@s.Group?.Name</td>
+                <td><a href="stud/edit?id=@s.StudentId">Edytuj</a> | <a href="stud/delete?id=@s.StudentId">Usuń</a></td>
             </tr>
         }
     </tbody>
 </table>
+<form>
+    <label>LastName</label>
+    <input type="text" />
+    <label>FirstName</label>
+    <input type="text"/>
+    <label>Age</label>
+    <input type="text" />
+    <label>GroupID</label>
+    <select name="GroupId">
+        <option value="Wybierz grupę"></option>
+        @foreach (var g in Model.Group)
+        {
+            <option value="@g.GroupId">@g.Name</option>
+        }
+    </select>
+    <button type="submit">Add</button>
+</form>

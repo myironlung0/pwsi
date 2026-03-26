@@ -21,7 +21,7 @@ namespace Lab1.Pages.Stud
 
         public IActionResult OnGet()
         {
-        ViewData["GroupId"] = new SelectList(_context.Group, "GroupId", "GroupId");
+            ViewData["GroupId"] = new SelectList(_context.Group, "GroupId", "Name");
             return Page();
         }
 

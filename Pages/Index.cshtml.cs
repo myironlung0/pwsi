@@ -14,12 +14,15 @@ namespace Lab1
             _context = context;
         }
 
-        public IList<Student> Students { get; set; }
+        public IList<Student> Student { get; set; }
+        public IList<Group> Group { get; set; }
 
         public void OnGet()
         {
-            Students = _context.Student
+            Student = _context.Student
                 .Include(s => s.Group)
+                .ToList();
+            Group = _context.Group
                 .ToList();
         }
     }

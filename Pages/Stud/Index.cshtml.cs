@@ -19,12 +19,14 @@ namespace Lab1.Pages.Stud
             _context = context;
         }
 
-        public IList<Student> Student { get;set; } = default!;
+        public IList<Student> Students { get;set; } = default!;
+        public IList<Group> Group { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Student = await _context.Student
+            Students = await _context.Student
                 .Include(s => s.Group).ToListAsync();
+            Group = await _context.Group.ToListAsync();
         }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CoreEFTest.DataContext;
 using CoreEFTest.EFModels;
+using System.Linq.Expressions;
 
 namespace Lab1.Pages.Gr
 {
@@ -49,14 +50,15 @@ namespace Lab1.Pages.Gr
                 return NotFound();
             }
 
-            var group = await _context.Group.FindAsync(id);
-            if (group != null)
-            {
-                Group = group;
-                _context.Group.Remove(Group);
-                await _context.SaveChangesAsync();
-            }
-
+            try{
+                var group = await _context.Group.FindAsync(id);
+                if (group != null)
+                {
+                    Group = group;
+                    _context.Group.Remove(Group);
+                    await _context.SaveChangesAsync();
+                }
+            }catch(Exception e) { Console.WriteLine("Błąd"); }
             return RedirectToPage("./Index");
         }
     }

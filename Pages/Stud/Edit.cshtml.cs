@@ -36,7 +36,7 @@ namespace Lab1.Pages.Stud
                 return NotFound();
             }
             Student = student;
-           ViewData["GroupId"] = new SelectList(_context.Group, "GroupId", "GroupId");
+           ViewData["GroupId"] = new SelectList(_context.Group, "GroupId", "Name");
             return Page();
         }
 
